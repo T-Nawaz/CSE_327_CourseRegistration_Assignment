@@ -1,7 +1,8 @@
 package com.company;
 
+
 /**
- * Created by tntan on 3/14/2017.
+ * Created by Abid Hasan on 2/28/2017.
  */
 public class BestForStudent extends CompositeDiscount {
     @Override

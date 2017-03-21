@@ -6,8 +6,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Properties;
 
+
 /**
- * Created by tntan on 3/14/2017.
+ * Created by Abid Hasan on 2/28/2017.
  */
 public class CompositeDiscount implements IDiscountStrategy {
 static LinkedList<IDiscountStrategy> iDiscountStrategies=new LinkedList<>();
