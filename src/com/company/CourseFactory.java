@@ -13,6 +13,7 @@ public class CourseFactory {
 
     private static CourseFactory instance;
     private IExtraFreeCalculator efCalculator;
+    private IDiscountStrategy discountStrategy;
     private Course course = new Course();
     private LinkedList<Course> cList = new LinkedList<>();
 
@@ -80,13 +81,12 @@ public class CourseFactory {
         course.setTutionPerCredit(5500);
         cList.add(course);
 
-        Configuration();
+        Configuration("extraFeeCalculator.config");
     }
 
     public static synchronized CourseFactory getInstance() {
-        if (instance == null) {
+
             instance = new CourseFactory();
-        }
         return instance;
     }
 
@@ -124,9 +124,33 @@ public class CourseFactory {
         return efCalculator;  //confused dont have vatCalculator so returned efCalculator
     }
 
-    public void Configuration() {
+    public IDiscountStrategy getDiscountStrategy(){
+        Configuration("IDiscountStrategy.config");
+        if (discountStrategy == null) {
+            String className = this.getClass().getPackage().getName() + "." + System.getProperty("IDiscountStrategy.class.name"); // confused don't have extraFeeCalculator class so usedIExtraFreeCalculator
+            System.out.println(className);
+            try {
+                if (className.contains("CompositeDiscount")){
+                    discountStrategy = (IDiscountStrategy) Class.forName(className).newInstance();
+                }else {
+                    discountStrategy = (IDiscountStrategy) Class.forName(className).newInstance();
+                }
+
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        return discountStrategy;
+    }
+
+
+    public void Configuration(String confiFile) {
         try{
-            FileInputStream configurationFile = new FileInputStream("config/extraFeeCalculator.config");
+            FileInputStream configurationFile = new FileInputStream("config/"+confiFile);
             Properties properties = new Properties(System.getProperties());
             properties.load(configurationFile);
             System.setProperties(properties);

@@ -9,9 +9,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import org.controlsfx.control.CheckComboBox;
 import java.io.*;
-import java.nio.Buffer;
+
 
 
 /**
@@ -34,7 +34,7 @@ public class RegistrationJFrame extends Application {
     Button newRegistration;
     Button addCourse;
     Button calculateDiscount;
-    ComboBox<String> cbStratagy;
+    CheckComboBox<String> cbStratagy;
     ComboBox<String> cbBest;
 
     //NEW REGISTRATION CLASS OBJECT
@@ -97,7 +97,7 @@ public class RegistrationJFrame extends Application {
         grandTotoal.setMaxSize(200, 50);
         grandTotoal.paddingProperty().setValue(new Insets(10, 10, 10, 10));
 
-        totalTuitionLabel = new Label("Total Tution ");
+        totalTuitionLabel = new Label("Discount ");
         totalTuitionLabel.paddingProperty().set(new Insets(10, 10, 10, 10));
 
         courseAddLabel = new Label("Course ID ");
@@ -121,12 +121,14 @@ public class RegistrationJFrame extends Application {
         calculateDiscount = new Button("Calculate Discount");
         calculateDiscount.paddingProperty().set(new Insets(10,10,10,10));
 
-        cbStratagy = new ComboBox<>();
+        cbStratagy = new CheckComboBox<>();
         cbStratagy.setMaxSize(200,50);
         cbStratagy.autosize();
-        cbStratagy.getItems().addAll("AcademicExcellence",
-                                        "FreedomFighter",
+        cbStratagy.getItems().addAll("AcademicExecellence",
+                                        "FredomFighter",
                                             "AboriginalORMinorityGroup");
+
+
         cbBest = new ComboBox<>();
         cbBest.autosize();
         cbBest.setMaxSize(200,50);
@@ -169,9 +171,10 @@ public class RegistrationJFrame extends Application {
 
                     courseTable.getItems().add(course);
 
-                    totalTuition.setText(String.valueOf((courseController.getRegistration()).getTotal()).trim() + "/TK");
+                    //TODO need to apply appropriate expression to get Proper Values
+                    totalTuition.setText("0/TK");
                     subTotalTuition.setText(String.valueOf((courseController.getRegistration()).getExtraFeeAmonunt()).trim() + "/TK");
-                    grandTotoal.setText(String.valueOf((courseController.getRegistration()).getGrandTotal()).trim() + "/TK");
+                    grandTotoal.setText(String.valueOf((courseController.getRegistration()).getGrandTotal()) + "/TK");
 
                     subTotalTuition.editableProperty().setValue(false);
                     totalTuition.editableProperty().setValue(false);
@@ -186,14 +189,63 @@ public class RegistrationJFrame extends Application {
             subTotalTuition.clear();
             totalTuition.clear();
             grandTotoal.clear();
+            try {
+                BufferedWriter discountStrategy=new BufferedWriter(new FileWriter("config/IDiscountStrategy.config"));
+                BufferedWriter compositeDisount=new BufferedWriter(new FileWriter("config/CompositeDiscount.config"));
+                discountStrategy.write("");
+                compositeDisount.write("");
+                discountStrategy.flush();
+                compositeDisount.flush();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         });
 
+        //setting Discount Strategy Configuration File
 
-        cbStratagy.setOnAction(e->{
+
+
+
+//        cbStratagy.setOnInputMethodTextChanged(e->{
+//            try {
+//                BufferedWriter configWriter=new BufferedWriter(new FileWriter("config/IDiscountStrategy.config"));
+//                configWriter.write("IDiscountStrategy.class.name="+cbStratagy.getCheckModel().getCheckedItems()+"Discount");
+//                configWriter.flush();
+//
+//            }catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//        });
+
+        calculateDiscount.setOnAction(e->{
             try {
                 BufferedWriter configWriter=new BufferedWriter(new FileWriter("config/IDiscountStrategy.config"));
-                configWriter.write("IDiscountStrategy.class.name="+cbStratagy.getSelectionModel().getSelectedItem()+"Discount");
-                configWriter.flush();
+                String classNames=String.valueOf(cbStratagy.getCheckModel().getCheckedItems());
+                classNames=classNames.substring(1,classNames.length()-1);
+                if (classNames.contains(",")){
+                    configWriter.write("IDiscountStrategy.class.name=CompositeDiscount");
+                    configWriter.write("\n"+"IDiscountStrategy.class.name.list="+classNames);
+                    configWriter.flush();
+                }
+                else{
+                    configWriter.write("IDiscountStrategy.class.name="+classNames+"Discount");
+                    configWriter.flush();
+                }
+                int discountTotal=(courseController.getRegistration().getTotal()-courseController.getRegistration().getDiscountAmount());
+                totalTuition.setText(String.valueOf(discountTotal).trim()+"/TK");
+                grandTotoal.setText(String.valueOf(courseController.getRegistration().getTotal()-discountTotal) + "/TK");
+                java.awt.Toolkit.getDefaultToolkit().beep();
+            }catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+
+        //setting compositeDiscount Configuration File
+        cbBest.setOnAction(e->{
+            try {
+                BufferedWriter bestConfigWriter=new BufferedWriter(new FileWriter("config/CompositeDiscount.config"));
+                bestConfigWriter.write("CompositeDiscount.class.name="+cbBest.getSelectionModel().getSelectedItem());
+                bestConfigWriter.flush();
 
             }catch (IOException e1) {
                 e1.printStackTrace();
@@ -225,7 +277,7 @@ public class RegistrationJFrame extends Application {
         vbDiscount.setAlignment(Pos.CENTER_LEFT);
 
         VBox vbFees = new VBox();
-        vbFees.getChildren().addAll(totalHbox,taxtotalHbox,grandTotalHbox);
+        vbFees.getChildren().addAll(taxtotalHbox,totalHbox,grandTotalHbox);
         vbFees.setSpacing(10);
 
         HBox hbFeeStratagy = new HBox();
