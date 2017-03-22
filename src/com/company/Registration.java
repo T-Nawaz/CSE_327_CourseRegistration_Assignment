@@ -29,10 +29,10 @@ public class Registration {
 
 
     public int getGrandTotal() {
-        return (this.getTotal() + this.getExtraFeeAmonunt());
+        return (this.getTotal() + this.getExtraFeeAmount());
     }
 
-    public int getExtraFeeAmonunt() {
+    public int getExtraFeeAmount() {
         /**
          *  TODO change the fee calculate
          *  Discount property is not handled

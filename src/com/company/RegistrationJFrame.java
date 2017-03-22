@@ -124,8 +124,8 @@ public class RegistrationJFrame extends Application {
         cbStratagy = new CheckComboBox<>();
         cbStratagy.setMaxSize(200,50);
         cbStratagy.autosize();
-        cbStratagy.getItems().addAll("AcademicExecellence",
-                                        "FredomFighter",
+        cbStratagy.getItems().addAll("AcademicExcellence",
+                                        "FreedomFighter",
                                             "AboriginalORMinorityGroup");
 
 
@@ -173,7 +173,7 @@ public class RegistrationJFrame extends Application {
 
                     //TODO need to apply appropriate expression to get Proper Values
                     totalTuition.setText("0/TK");
-                    subTotalTuition.setText(String.valueOf((courseController.getRegistration()).getExtraFeeAmonunt()).trim() + "/TK");
+                    subTotalTuition.setText(String.valueOf((courseController.getRegistration()).getExtraFeeAmount()).trim() + "/TK");
                     grandTotoal.setText(String.valueOf((courseController.getRegistration()).getGrandTotal()) + "/TK");
 
                     subTotalTuition.editableProperty().setValue(false);
