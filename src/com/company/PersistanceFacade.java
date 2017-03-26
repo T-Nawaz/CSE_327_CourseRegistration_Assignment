@@ -7,14 +7,13 @@ import java.util.HashMap;
  */
 public class PersistanceFacade {
 
-    private IMapper iMapper; //May not need it here
-    private HashMap<Course,CourseDescriptionRDBMapper> mappers=new HashMap<>();
     /**
      * TODO mappers K,V is assumed not sure what will be <IMappers> is the only field given in diagram but it will need another parameter
      * TODO Don't Understand what this is for
      * TODO what should be the and value of mappers
      */
     private static PersistanceFacade instance;
+    private IMapper iMapper;
 
     public static synchronized PersistanceFacade getInstance(){
         if (instance==null){
@@ -27,7 +26,11 @@ public class PersistanceFacade {
     }
 
     public Object get(String oid,Class persistanceClasss){
-       IMapper iMapper=mappers.get(persistanceClasss);
+
+            if(persistanceClasss==Course.class && iMapper==null ){
+            iMapper = new CourseDescriptionRDBMapper();
+            }
+
         /**
          * TODO it may be a class of RDBMappper+{@link CourseDescriptionRDBMapper} which to select or Course+{@link Course} class
          */
@@ -36,12 +39,13 @@ public class PersistanceFacade {
         return iMapper.get(oid);
     }
 
-    public void put(String oid,Object object){
+    public void put(Course course){
 
         /**
          * TODO don't understand what to do here
          * TODO may be need new classes to mappers according to Diagram
          */
-        iMapper.put(oid,object); //Confused This may not be right the implementation
+        if(iMapper==null) {iMapper=new CourseDescriptionRDBMapper();}
+        iMapper.put(course);
     }
 }

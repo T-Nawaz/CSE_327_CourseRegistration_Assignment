@@ -7,7 +7,7 @@ public class Course {
     String id;
     String title;
     int credit;
-    int tuitionPerCredit;
+    int tpCredit;
     int subTotal;
 
     public String getId() {
@@ -35,14 +35,14 @@ public class Course {
     }
 
     public int getTuitionPerCredit() {
-        return tuitionPerCredit;
+        return tpCredit;
     }
 
     public void setTuitionPerCredit(int tuitionPerCredit) {
-        this.tuitionPerCredit = tuitionPerCredit;
+        this.tpCredit = tuitionPerCredit;
     }
 
     public int getSubTotal() {
-        return subTotal = credit * tuitionPerCredit;
+        return subTotal = credit * tpCredit;
     }
 }

@@ -18,7 +18,7 @@ public class CourseFactory {
     private LinkedList<Course> cList = new LinkedList<>();
 
     public CourseFactory() {
-        course = new Course();
+       /* course = new Course();
         course.setId("CSE 327");
         course.setTitle("Software Engineering");
         course.setCredit(3);
@@ -80,7 +80,7 @@ public class CourseFactory {
         course.setCredit(3);
         course.setTuitionPerCredit(5500);
         cList.add(course);
-
+*/
         Configuration("extraFeeCalculator.config");
     }
 
@@ -97,14 +97,18 @@ public class CourseFactory {
         courseS.setCredit(0);
         courseS.setTuitionPerCredit(0);
 
-        for (int i = 0; i < cList.size(); i++) {
-            course = cList.get(i);
-            if (course.getId() == id)
-                courseS = course;
-        }
+        courseS= (Course) PersistanceFacade.getInstance().get(id,Course.class);
+        System.out.println(courseS.getId());
+        System.out.println(courseS.getTitle());
+        System.out.println(courseS.getCredit());
+        System.out.println(courseS.getTuitionPerCredit());
 
 
         return courseS;
+    }
+
+    public void addCourse(Course course){
+        PersistanceFacade.getInstance().put(course);
     }
 
     public IExtraFreeCalculator getExtraFreeCalculator() {
