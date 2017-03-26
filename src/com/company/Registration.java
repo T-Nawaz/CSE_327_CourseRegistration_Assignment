@@ -19,6 +19,11 @@ public class Registration {
         for (int i = 0; i < courseList.size(); i++) {
             total += (courseList.get(i)).getSubTotal();
         }
+
+        /**
+         *  TODO modify this to get proper discount total
+         *  Discount property is not handled properly
+         */
         return total;
     }
 
@@ -28,12 +33,19 @@ public class Registration {
     }
 
     public int getExtraFeeAmount() {
-
+        /**
+         *  TODO change the fee calculate
+         *  Discount property is not handled
+         */
         IExtraFreeCalculator iefc = CourseFactory.getInstance().getExtraFreeCalculator();
         return iefc.getExtraAmount(this.getTotal());
     }
     public int getDiscountAmount(){
         IDiscountStrategy discountStrategy=CourseFactory.getInstance().getDiscountStrategy();
+        /**
+         * TODO manage this to fit all fees
+         *  Discount property is not handled properly
+         */
         return discountStrategy.getTotal(this);
     }
 
