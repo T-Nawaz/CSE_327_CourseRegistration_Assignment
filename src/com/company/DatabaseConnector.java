@@ -1,5 +1,6 @@
 package com.company;
 
+import java.awt.*;
 import java.sql.*;
 
 /**
@@ -53,6 +54,7 @@ public class DatabaseConnector {
     public void addData(String query){
         try {
             DBstatement.execute(query);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

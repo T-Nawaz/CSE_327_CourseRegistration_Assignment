@@ -307,6 +307,17 @@ public class RegistrationJFrame extends Application {
                 course.setTuitionPerCredit(Integer.parseInt(TFtution_perCredit.getText().trim()));
 
                 courseFactory.addCourse(course);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Confirmation Dialog");
+                alert.setHeaderText(null);
+                alert.setContentText("Course Successfully Added to Database");
+
+                alert.showAndWait();
+                TFcourse_id.clear();
+                TFcourse_title.clear();
+                TFcourse_credit.clear();
+                TFtution_perCredit.clear();
             });
 
         });
