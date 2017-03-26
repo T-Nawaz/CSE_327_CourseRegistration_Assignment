@@ -7,7 +7,9 @@ package com.company;
 public class AcademicExcellenceDiscount implements IDiscountStrategy {
     @Override
     public int getTotal(Registration registration) {
-
+        /**
+         * TODO may have to implement the whole getTotal Function here
+         */
         return (int) (registration.getTotal()*.5);
     }
 }
