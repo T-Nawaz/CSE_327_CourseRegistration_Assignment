@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/com/company/CourseFactory.java" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e40314be-7b0d-4f47-9ba4-4493e9eeec02" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/BestForNSU.class" afterPath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/BestForNSU.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/BestForStudent.class" afterPath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/BestForStudent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/Registration.class" afterPath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/Registration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e40314be-7b0d-4f47-9ba4-4493e9eeec02" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -767,7 +762,7 @@
       <workItem from="1490458132859" duration="1232000" />
       <workItem from="1490491478289" duration="10209000" />
       <workItem from="1490508847738" duration="809000" />
-      <workItem from="1490509795648" duration="658000" />
+      <workItem from="1490509795648" duration="1198000" />
     </task>
     <task id="LOCAL-00001" summary="resolved">
       <created>1490104088625</created>
@@ -815,7 +810,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36299000" />
+    <option name="totallyTimeSpent" value="36839000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -839,7 +834,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25929978" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25929978" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1149,7 +1144,7 @@
         <state relative-caret-position="136">
           <caret line="8" column="52" lean-forward="false" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
           <folding>
-            <element signature="e#256#257#0" expanded="true" />
+            <element signature="e#256#257#0" expanded="false" />
           </folding>
         </state>
       </provider>
