@@ -7,11 +7,7 @@ import java.util.Objects;
  */
 public interface IMapper {
 
-    /**
-     * TODO may need to change "String oid" to Different Class Object "OID oid" -> returns unique Object ID
-     * @param oid
-     * @return
-     */
+
     public Object get(String oid);
     public void put(Course course);
 }
