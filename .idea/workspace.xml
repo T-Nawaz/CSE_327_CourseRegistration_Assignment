@@ -9,8 +9,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/BestForStudent.class" afterPath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/BestForStudent.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/Registration.class" afterPath="$PROJECT_DIR$/out/production/CouurseRegistration/com/company/Registration.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/DatabaseConnector.java" afterPath="$PROJECT_DIR$/src/com/company/DatabaseConnector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/company/RegistrationJFrame.java" afterPath="$PROJECT_DIR$/src/com/company/RegistrationJFrame.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -769,7 +767,7 @@
       <workItem from="1490458132859" duration="1232000" />
       <workItem from="1490491478289" duration="10209000" />
       <workItem from="1490508847738" duration="809000" />
-      <workItem from="1490509795648" duration="634000" />
+      <workItem from="1490509795648" duration="647000" />
     </task>
     <task id="LOCAL-00001" summary="resolved">
       <created>1490104088625</created>
@@ -799,11 +797,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490509022528</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Revision 4 Prototype { Methods Are Unimplemented Basic Structure is created}">
+      <created>1490510436241</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1490510436241</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36275000" />
+    <option name="totallyTimeSpent" value="36288000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
