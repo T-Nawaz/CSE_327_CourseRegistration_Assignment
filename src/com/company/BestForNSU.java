@@ -10,11 +10,7 @@ public class BestForNSU extends CompositeDiscount {
 
     @Override
     public int getTotal(Registration registration) {
-        //TODO implements best strategy for North South University
 
-        /**
-         * TODO may have to implement the whole getTotal Function here
-         */
         int bestForNsu = Integer.MIN_VALUE;
         for (IDiscountStrategy iDS : super.iDiscountStrategies) {
             if (bestForNsu < iDS.getTotal(registration))
