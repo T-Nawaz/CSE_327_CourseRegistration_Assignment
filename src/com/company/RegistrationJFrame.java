@@ -3,11 +3,16 @@ package com.company;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
 import java.io.*;
@@ -22,18 +27,24 @@ public class RegistrationJFrame extends Application {
 
     //UI COMPONENTS
     Stage window;
+
     TableView<Course> courseTable;
+
     TextField courseAdd;
     TextField subTotalTuition;
     TextField totalTuition;
     TextField grandTotoal;
+
     Label courseAddLabel;
     Label taxTotalLabel;
     Label grandTotalLabel;
     Label totalTuitionLabel;
+
     Button newRegistration;
     Button addCourse;
     Button calculateDiscount;
+    Button addNewCourse;
+
     CheckComboBox<String> cbStratagy;
     ComboBox<String> cbBest;
 
@@ -71,7 +82,7 @@ public class RegistrationJFrame extends Application {
 
         TableColumn<Course, Integer> tution_credit = new TableColumn<>("Tuition/Credit");
         tution_credit.setMinWidth(200);
-        tution_credit.setCellValueFactory(new PropertyValueFactory<Course, Integer>("tutionPerCredit"));
+        tution_credit.setCellValueFactory(new PropertyValueFactory<Course, Integer>("tpCredit"));
 
         TableColumn<Course, Integer> sub_total = new TableColumn<>("Sub Total");
         sub_total.setMinWidth(200);
@@ -114,6 +125,9 @@ public class RegistrationJFrame extends Application {
         newRegistration = new Button("New Registration");
         newRegistration.paddingProperty().set(new Insets(10, 10, 10, 10));
 
+        addNewCourse=new Button("New Course");
+        addNewCourse.paddingProperty().set(new Insets(10, 10, 10, 10));
+        addNewCourse.setAlignment(Pos.CENTER_RIGHT);
 
         addCourse = new Button("Add Course");
         addCourse.paddingProperty().set(new Insets(10, 10, 10, 10));
@@ -124,8 +138,8 @@ public class RegistrationJFrame extends Application {
         cbStratagy = new CheckComboBox<>();
         cbStratagy.setMaxSize(200,50);
         cbStratagy.autosize();
-        cbStratagy.getItems().addAll("AcademicExecellence",
-                                        "FredomFighter",
+        cbStratagy.getItems().addAll("AcademicExcellence",
+                                        "FreedomFighter",
                                             "AboriginalORMinorityGroup");
 
 
@@ -143,42 +157,22 @@ public class RegistrationJFrame extends Application {
                     id = id.toUpperCase();
                     Course course = new Course();
 
-                    if (id.equals("CSE 327")) {
-                        course = courseController.getCourse("CSE 327");
-                        courseController.addCourse("CSE 327");
-                    } else if (id.equals("CSE 323")) {
-                        course = courseController.getCourse("CSE 323");
-                        courseController.addCourse("CSE 323");
-                    } else if (id.equals("CSE 338")) {
-                        course = courseController.getCourse("CSE 338");
-                        courseController.addCourse("CSE 338");
-                    } else if (id.equals("CSE 338L")) {
-                        course = courseController.getCourse("CSE 338L");
-                        courseController.addCourse("CSE 338L");
-                    } else if (id.equals("CSE 332")) {
-                        course = courseController.getCourse("CSE 332");
-                        courseController.addCourse("CSE 332");
-                    } else if (id.equals("CSE 231")) {
-                        course = courseController.getCourse("CSE 231");
-                        courseController.addCourse("CSE 231");
-                    } else if (id.equals("PHY 108")) {
-                        course = courseController.getCourse("PHY 108");
-                        courseController.addCourse("PHY 108");
-                    } else if (id.equals("MAT 350")) {
-                        course = courseController.getCourse("MAT 350");
-                        courseController.addCourse("MAT 350");
-                    }
+            course = courseController.getCourse(id);
+            courseController.addCourse(id);
 
                     courseTable.getItems().add(course);
 
                     //TODO need to apply appropriate expression to get Proper Values
                     totalTuition.setText("0/TK");
-                    subTotalTuition.setText(String.valueOf((courseController.getRegistration()).getExtraFeeAmonunt()).trim() + "/TK");
+                    subTotalTuition.setText(String.valueOf((courseController.getRegistration()).getExtraFeeAmount()).trim() + "/TK");
                     grandTotoal.setText(String.valueOf((courseController.getRegistration()).getGrandTotal()) + "/TK");
 
                     subTotalTuition.editableProperty().setValue(false);
                     totalTuition.editableProperty().setValue(false);
                     grandTotoal.editableProperty().setValue(false);
+
+
+
                 }
         );
 
@@ -240,6 +234,83 @@ public class RegistrationJFrame extends Application {
             }
         });
 
+        addNewCourse.setOnAction(e->{
+
+
+            Button add=new Button("Add Course");
+
+            TextField TFcourse_id=new TextField();
+            TextField TFcourse_title=new TextField();
+            TextField TFcourse_credit=new TextField();
+            TextField TFtution_perCredit=new TextField();
+
+            TFcourse_id.setMaxSize(200,50);
+            TFcourse_title.setMaxSize(200,50);
+            TFcourse_credit.setMaxSize(200,50);
+            TFtution_perCredit.setMaxSize(200,50);
+
+
+            Label  LBcourse_id= new Label("CourseId ");
+            LBcourse_id.setPadding(new Insets(10,10,10,10));
+            LBcourse_id.setMaxSize(100,50);
+
+            Label  LBcourse_title=new Label("Course Title ");
+            LBcourse_title.setPadding(new Insets(10,10,10,10));
+            LBcourse_title.setMaxSize(100,50);
+
+            Label  LBcourse_credit=new Label("Credit ");
+            LBcourse_credit.setPadding(new Insets(10,10,10,10));
+            LBcourse_credit.setMaxSize(100,50);
+
+            Label  LBtution_perCredit=new Label("Tuition/Credit ");
+            LBtution_perCredit.setPadding(new Insets(10,10,10,10));
+            LBtution_perCredit.setMaxSize(100,50);
+
+
+            GridPane grid = new GridPane();
+            grid.setAlignment(Pos.CENTER);
+            grid.setHgap(10);
+            grid.setVgap(10);
+            grid.setPadding(new Insets(25, 25, 25, 25));
+
+            Text scenetitle = new Text("Add Course Here");
+            scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+            grid.add(scenetitle, 0, 0, 2, 1);
+
+
+            grid.add(LBcourse_id, 0, 1);
+
+
+            grid.add(TFcourse_id, 1, 1);
+            grid.add(LBcourse_title, 0, 2);
+            grid.add(TFcourse_title, 1, 2);
+            grid.add(LBcourse_credit,0,3);
+            grid.add(TFcourse_credit,1,3);
+            grid.add(LBtution_perCredit,0,4);
+            grid.add(TFtution_perCredit,1,4);
+            grid.add(add,1,5);
+
+            Stage stage = new Stage();
+            stage.setTitle("Add New Course");
+            Scene scene=new Scene(grid,400,500);
+            stage.setScene(scene);
+            stage.show();
+
+            CourseFactory courseFactory=new CourseFactory();
+            Course course=new Course();
+
+            add.setOnAction(event->{
+
+                course.setId(TFcourse_id.getText().trim().toUpperCase());
+                course.setTitle( TFcourse_title.getText().trim());
+                course.setCredit(Integer.parseInt(TFcourse_credit.getText().trim()));
+                course.setTuitionPerCredit(Integer.parseInt(TFtution_perCredit.getText().trim()));
+
+                courseFactory.addCourse(course);
+            });
+
+        });
+
         //setting compositeDiscount Configuration File
         cbBest.setOnAction(e->{
             try {
@@ -256,7 +327,7 @@ public class RegistrationJFrame extends Application {
 
         //ATTACHING OBJECTS TO STAGE
         HBox hBox = new HBox();
-        hBox.getChildren().addAll(courseAddLabel, courseAdd, addCourse, newRegistration);
+        hBox.getChildren().addAll(courseAddLabel, courseAdd, addCourse, newRegistration,addNewCourse);
         hBox.setSpacing(20);
 
         HBox totalHbox = new HBox();
