@@ -5,11 +5,16 @@ package com.company;
  */
 public class RegistrationCourseController {
 
-    Registration reg;
+    private Registration reg;
+    private int regId=0;
     CourseFactory courseFactory = new CourseFactory();
 
     public void makeNewRegistration() {
-        reg = new Registration();
+        if(reg!=null){
+            PersistanceFacade.getInstance().put(reg);
+        }
+        reg = new Registration(regId);
+        regId++;
     }
 
     public void addCourse(String id) {
