@@ -8,7 +8,22 @@ import java.util.HashMap;
 public class PersistanceFacade {
 
     private static PersistanceFacade instance;
-    private IMapper iMapper;
+    private HashMap mappers = new HashMap();
+    private static Class Course;
+    private static Class Registration;
+
+    public PersistanceFacade() {
+
+        try {
+            Course=Class.forName("com.company.Course");
+            Registration=Class.forName("com.company.Registration");
+
+            mappers.put(Course,new CourseDescriptionRDBMapper());
+            mappers.put(Registration,new RegistrationRDBMapper());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static synchronized PersistanceFacade getInstance(){
         if (instance==null){
@@ -20,21 +35,20 @@ public class PersistanceFacade {
         return instance;
     }
 
-    public Object get(String oid,Class persistanceClasss){
+    public Object get(String oid,Object object){
 
-            if(persistanceClasss==Course.class && iMapper==null ){
-            iMapper = new CourseDescriptionRDBMapper();
-            }
-
-
-
-        return iMapper.get(oid);
+        IMapper mapper = (IMapper) mappers.get(object.getClass());
+        Object result = null;
+        if (mapper != null) {
+            result = mapper.get(oid);
+        }
+        return result;
     }
 
-    public void put(Course course){
-
-
-        if(iMapper==null) {iMapper=new CourseDescriptionRDBMapper();}
-        iMapper.put(course);
+    public void put(Object object){
+        IMapper mapper =(IMapper) mappers.get(object.getClass());
+        mapper.put(object);
     }
+
+
 }
