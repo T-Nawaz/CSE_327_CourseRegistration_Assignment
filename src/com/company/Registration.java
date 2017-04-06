@@ -8,7 +8,12 @@ import java.util.LinkedList;
  */
 public class Registration {
     private LinkedList<Course> courseList = new LinkedList<>();
-    int total = 0;
+    private int total = 0;
+    private int registrationId;
+
+    public Registration(int registrationId) {
+        this.registrationId = registrationId;
+    }
 
     public void addCourse(Course course) {
         courseList.add(course);
@@ -36,9 +41,12 @@ public class Registration {
         IDiscountStrategy discountStrategy=CourseFactory.getInstance().getDiscountStrategy();
         return discountStrategy.getTotal(this);
     }
-
-
-
+    public LinkedList getCourseList(){
+        return courseList;
+    }
+    public int getRegistrationId(){
+        return registrationId;
+    }
 
 
 }
