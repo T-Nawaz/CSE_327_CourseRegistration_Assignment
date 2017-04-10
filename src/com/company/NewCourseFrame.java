@@ -62,8 +62,6 @@ public class NewCourseFrame {
 
 
         grid.add(LBcourse_id, 0, 1);
-
-
         grid.add(TFcourse_id, 1, 1);
         grid.add(LBcourse_title, 0, 2);
         grid.add(TFcourse_title, 1, 2);
