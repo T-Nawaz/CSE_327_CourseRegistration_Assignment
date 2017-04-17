@@ -97,11 +97,7 @@ public class CourseFactory {
         courseS.setCredit(0);
         courseS.setTuitionPerCredit(0);
 
-        courseS= (Course) PersistanceFacade.getInstance().get(id,Course.class);
-        System.out.println(courseS.getId());
-        System.out.println(courseS.getTitle());
-        System.out.println(courseS.getCredit());
-        System.out.println(courseS.getTuitionPerCredit());
+        courseS= (Course) PersistanceFacade.getInstance().get(id,new Course());
 
 
         return courseS;

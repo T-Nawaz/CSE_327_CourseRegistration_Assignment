@@ -32,23 +32,15 @@ public class DatabaseConnector {
     public Object getData(String query){
 
         Course ResultCourse=new Course();
-
+        ResultSet resultSet=null;
         try {
-            ResultSet resultSet=DBstatement.executeQuery(query);
-
-            while (resultSet.next()){
-                ResultCourse.setId(resultSet.getString("course_id"));
-                ResultCourse.setTitle(resultSet.getString("course_name"));
-                ResultCourse.setCredit(resultSet.getInt("course_credit"));
-                ResultCourse.setTuitionPerCredit(resultSet.getInt("credit_tution"));
-            }
+            resultSet=DBstatement.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
-
-        return ResultCourse;
+        return resultSet;
     }
 
     public void addData(String query){

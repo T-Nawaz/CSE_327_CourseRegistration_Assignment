@@ -9,5 +9,5 @@ public interface IMapper {
 
 
     public Object get(String oid);
-    public void put(Course course);
+    public void put(Object object);
 }
